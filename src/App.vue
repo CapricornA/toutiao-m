@@ -14,7 +14,22 @@
       <van-cell title="单元格" value="内容" label="描述信息" />
     </van-cell-group>
 
-    <i class="toutiao toutiao-pinglun"></i>
+    <div>
+      <i class="toutiao toutiao-pinglun"></i>
+    </div>
+
+    <div>
+      <van-icon name="chat-o" />
+      <van-icon name="chat-o" dot />
+      <van-icon name="chat-o" badge="99+" />
+    </div>
+
+    <div>
+      <van-button icon="star-o" type="primary" />
+      <van-button icon="star-o" type="primary">按钮</van-button>
+      <van-button icon-prefix="toutiao" icon="shanchu" type="danger"></van-button>
+      <van-button icon-prefix="toutiao" icon="yanzhengma" type="primary"></van-button>
+    </div>
 
   </div>
 </template>
