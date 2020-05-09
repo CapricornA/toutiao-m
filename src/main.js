@@ -2,9 +2,12 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+import './styles/index.less'
 
 Vue.config.productionTip = false
 
+// 创建 Vue 根实例, 将 router, Store 配置到根实例中
+// 把 APP 根组件渲染到 #app 节点
 new Vue({
   router,
   store,
