@@ -47,6 +47,7 @@
 
 <script>
 import { login } from '@/api/user'
+// import { Toast } from 'vant'
 
 export default {
   name: 'LoginIndex',
@@ -66,15 +67,21 @@ export default {
   mounted () {},
   methods: {
     async onLogin () {
+      this.$toast.loading({
+        message: '登录中...',
+        forbidClick: true, // 禁止背景点击
+        duration: 0 // 展示时长, 为 0 时 Toast 不会消失
+      })
       // 1. 找到数据接口
       // 2. 封装请求方法
       // 3. 请求调用登录
       try {
         const res = await login(this.user)
         console.log(res)
+        this.$toast.success('登录成功')
         // 4. 处理相应结果
       } catch (err) {
-        console.log('登录失败', err)
+        this.$toast.fail('登录失败, 请校验手机号和验证码')
       }
     }
   }
