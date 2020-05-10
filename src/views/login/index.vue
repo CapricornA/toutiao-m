@@ -60,7 +60,7 @@
 </template>
 
 <script>
-import { login } from '@/api/user'
+import { login, sendSms } from '@/api/user'
 // import { Toast } from 'vant'
 
 export default {
@@ -120,11 +120,20 @@ export default {
 
     async onSendSms () {
       try {
-        await this.$refs['login-form'].vaildate('mobile')
+        await this.$refs['login-form'].validate('mobile')
         // 验证通过, 请求发送验证码
+        await sendSms(this.user.mobile)
       } catch (err) {
+        let message = ''
+        if (err && err.response && err.response.statue === 429) {
+          message = '发送太频繁了, 请稍后重试'
+        } else if (err.name === 'mobile') {
+          message = err.message
+        } else {
+          message = '发送失败, 请稍后重试'
+        }
         this.$toast({
-          message: err.message,
+          message,
           position: 'top'
         })
       }
