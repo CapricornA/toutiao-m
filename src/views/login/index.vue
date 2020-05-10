@@ -38,7 +38,14 @@
         :rules="formRules.code"
       >
         <template #button>
+          <van-count-down
+            v-if="isCountDownShow"
+            :time="1000 * 30"
+            format="ss s"
+            @finish="isCountDownShow = false"
+          />
           <van-button
+          v-else
             class="send-btn"
             size="small"
             round
@@ -82,7 +89,8 @@ export default {
           { required: true, message: '请输入验证码' },
           { pattern: /^\d{6}$/, message: '验证码格式错误' }
         ]
-      }
+      },
+      isCountDownShow: false // 控制倒计时和发送按钮显示状态
     }
   },
   computed: {},
@@ -123,6 +131,7 @@ export default {
         await this.$refs['login-form'].validate('mobile')
         // 验证通过, 请求发送验证码
         await sendSms(this.user.mobile)
+        this.isCountDownShow = true
       } catch (err) {
         let message = ''
         if (err && err.response && err.response.statue === 429) {
