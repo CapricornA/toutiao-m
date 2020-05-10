@@ -25,6 +25,7 @@
         left-icon="shouji"
         placeholder="请输入手机号"
         name="mobile"
+        cneter
         :rules="formRules.mobile"
       />
       <van-field
@@ -35,6 +36,7 @@
         left-icon="yanzhengma"
         placeholder="请输入验证码"
         name="code"
+        center
         :rules="formRules.code"
       >
         <template #button>
@@ -49,6 +51,7 @@
             class="send-btn"
             size="small"
             round
+            :loading="isSendSmsLoading"
             @click.prevent="onSendSms"
           >获取验证码</van-button>
         </template>
@@ -90,7 +93,8 @@ export default {
           { pattern: /^\d{6}$/, message: '验证码格式错误' }
         ]
       },
-      isCountDownShow: false // 控制倒计时和发送按钮显示状态
+      isCountDownShow: false, // 控制倒计时和发送按钮显示状态
+      isSendSmsLoading: false // 发送验证码按钮的 loading 状态
     }
   },
   computed: {},
@@ -131,6 +135,7 @@ export default {
         await this.$refs['login-form'].validate('mobile')
         // 验证通过, 请求发送验证码
         await sendSms(this.user.mobile)
+        this.isSendSmsLoading = true // 展示按钮的 loading 状态
         this.isCountDownShow = true
       } catch (err) {
         let message = ''
@@ -146,10 +151,9 @@ export default {
           position: 'top'
         })
       }
-      // 校验手机号码
-      // 验证通过 -> 请求发送验证码 -> 用户接受短信 -> 输入验证码 -> 请求登录
-      // 请求发送验证码 -> 隐藏发送按钮, 显示倒计时
-      // 倒计时结束 -> 隐藏倒计时, 显示发送按钮
+
+      // 关闭发送按钮的 loading 状态
+      this.isSendSmsLoading = false
     }
   }
 }
