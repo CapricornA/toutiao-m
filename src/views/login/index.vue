@@ -17,6 +17,7 @@
         icon-prefix="toutiao"
         left-icon="shouji"
         placeholder="请输入手机号"
+        :rules="[{ required: true, message: '请填写手机号' }]"
       />
       <van-field
         v-model="user.code"
