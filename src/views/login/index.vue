@@ -10,7 +10,7 @@
     <!-- /导航栏 -->
 
     <!-- 登录表单 -->
-    <van-cell-group>
+    <van-form @submit="onLogin">
       <van-field
         v-model="user.mobile"
         label="手机号"
@@ -24,7 +24,8 @@
         label="验证码"
         icon-prefix="toutiao"
         left-icon="yanzhengma"
-        placeholder="请输入验证码">
+        placeholder="请输入验证码"
+      >
         <template #button>
           <van-button
             class="send-btn"
@@ -32,14 +33,14 @@
             round>获取验证码</van-button>
         </template>
       </van-field>
-    </van-cell-group>
-    <div class="login-btn-wrap">
-      <van-button
-        class="login-btn"
-        type="info"
-        block
-        @click="onLogin">登录</van-button>
-    </div>
+      <div class="login-btn-wrap">
+        <van-button
+          class="login-btn"
+          type="info"
+          block
+        >登录</van-button>
+      </div>
+    </van-form>
     <!-- /登录表单 -->
 
   </div>
