@@ -9,15 +9,15 @@
         :border="false"
       >
         <van-image
+          class="avatar"
           slot="icon"
-          width="50"
-          height="50"
           round
           fit="cover"
           src="https://img.yzcdn.cn/vant/cat.jpeg"
         />
-        <div slot="title">昵称</div>
+        <div slot="title" class="name">昵称</div>
         <van-button
+          class="update-btn"
           size="small"
           round
         >
@@ -100,9 +100,29 @@ export default {
 .my-container {
   .my-info {
     // background: url("./banner.png") no-repeat;
-    // background-size: contain;
+    // background-size: contain;1
     .base-info {
+      box-sizing: border-box;
+      padding-top: 38px;
+      padding-bottom: 11px;
+      height: 115px;
       background-color: unset;
+      .avatar {
+        box-sizing: border-box;
+        width: 66px;
+        height: 66px;
+        border: 1px solid #ffffff;
+        margin-right: 11px;
+      }
+      .name {
+        color: #ffffff;
+        font-size: 15px;
+      }
+      .update-btn {
+        height: 16px;
+        font-size: 10px;
+        color: #666;
+      }
     }
     /deep/ .van-grid-item__content {
       background-color: unset;
