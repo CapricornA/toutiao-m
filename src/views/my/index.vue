@@ -99,14 +99,14 @@ export default {
 <style lang='less' scoped>
 .my-container {
   .my-info {
-    // background: url("./banner.png") no-repeat;
-    // background-size: contain;1
+    background: url("./banner.png") no-repeat;
+    background-size: cover;
     .base-info {
       box-sizing: border-box;
       padding-top: 38px;
       padding-bottom: 11px;
       height: 115px;
-      // background-color: unset;
+      background-color: unset;
       .avatar {
         box-sizing: border-box;
         width: 66px;
@@ -127,7 +127,7 @@ export default {
     .data-info {
       .data-info-item {
         height: 65px;
-        // color: #ffffff;
+        color: #ffffff;
         .text-wrap {
           display: flex;
           flex-direction: column;
