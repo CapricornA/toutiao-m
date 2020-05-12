@@ -15,31 +15,42 @@
 
     <!-- 文章频道列表 -->
     <van-tabs v-model="active">
-      <van-tab title="标签 1">内容 1</van-tab>
-      <van-tab title="标签 2">内容 2</van-tab>
-      <van-tab title="标签 3">内容 3</van-tab>
-      <van-tab title="标签 4">内容 4</van-tab>
-      <van-tab title="标签 5">内容 5</van-tab>
+      <van-tab
+        :title="channel.name"
+        v-for="channel in channels"
+        :key="channel.id"
+      >{{ channel.name }}</van-tab>
     </van-tabs>
     <!-- /文章频道列表 -->
   </div>
 </template>
 
 <script>
+import { getUserChannels } from '@/api/user'
+
 export default {
   name: 'HomeIndex',
   props: {},
   components: {},
   data () {
     return {
-      active: 2 // 控制被激活的标签
+      active: 0, // 控制被激活的标签
+      channels: []
     }
   },
   computed: {},
   watch: {},
-  created () {},
+  created () {
+    this.loadChannels()
+  },
   mounted () {},
-  methods: {}
+  methods: {
+    async loadChannels () {
+      // 请求获取标签数据
+      const { data } = await getUserChannels()
+      this.channels = data.data.channels
+    }
+  }
 }
 </script>
 
