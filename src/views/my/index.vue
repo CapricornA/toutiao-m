@@ -51,7 +51,7 @@
       </van-grid>
     </van-cell-group>
 
-    <van-grid class="nav-grid" column-num="2">
+    <van-grid class="nav-grid mb-4" column-num="2">
       <!-- <van-grid-item icon="star-o" text="文字" /> -->
       <van-grid-item
         class="nav-grid-item"
@@ -73,11 +73,12 @@
       to="/"
     />
     <van-cell
+      class="mb-4"
       title="小智同学"
       is-link
       to="/"
     />
-    <van-cell title="退出登录" />
+    <van-cell class="logout-cell" title="退出登录" />
 
   </div>
 </template>
@@ -148,6 +149,7 @@ export default {
       background-color: unset;
     }
   }
+
   /deep/ .nav-grid {
     .nav-grid-item {
       height: 70px;
@@ -165,6 +167,14 @@ export default {
         color: #333;
       }
     }
+  }
+
+  .logout-cell {
+    text-align: center;
+    color: #d86262;
+  }
+  .mb-4 {
+    margin-bottom: 4px;
   }
 }
 </style>
