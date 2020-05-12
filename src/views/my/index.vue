@@ -23,28 +23,28 @@
         >
         编辑资料</van-button>
       </van-cell>
-      <van-grid :border="false">
-        <van-grid-item >
-          <div slot="text">
-            <div class="span">123</div>
+      <van-grid :border="false" class="data-info">
+        <van-grid-item class="data-info-item">
+          <div class="text-wrap" slot="text">
+            <div class="count">123</div>
             <div class="text">头条</div>
           </div>
         </van-grid-item>
-        <van-grid-item >
-          <div slot="text">
-            <div class="span">123</div>
+        <van-grid-item class="data-info-item">
+          <div class="text-wrap" slot="text">
+            <div class="count">123</div>
             <div class="text">关注</div>
           </div>
         </van-grid-item>
-        <van-grid-item >
-          <div slot="text">
-            <div class="span">123</div>
+        <van-grid-item class="data-info-item">
+          <div class="text-wrap" slot="text">
+            <div class="count">123</div>
             <div class="text">粉丝</div>
           </div>
         </van-grid-item>
-        <van-grid-item >
-          <div slot="text">
-            <div class="span">123</div>
+        <van-grid-item class="data-info-item">
+          <div class="text-wrap" slot="text">
+            <div class="count">123</div>
             <div class="text">获赞</div>
           </div>
         </van-grid-item>
@@ -106,7 +106,7 @@ export default {
       padding-top: 38px;
       padding-bottom: 11px;
       height: 115px;
-      background-color: unset;
+      // background-color: unset;
       .avatar {
         box-sizing: border-box;
         width: 66px;
@@ -122,6 +122,24 @@ export default {
         height: 16px;
         font-size: 10px;
         color: #666;
+      }
+    }
+    .data-info {
+      .data-info-item {
+        height: 65px;
+        // color: #ffffff;
+        .text-wrap {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          .count {
+            font-size: 18px;
+          }
+          .text {
+            font-size: 11px;
+          }
+        }
       }
     }
     /deep/ .van-grid-item__content {
