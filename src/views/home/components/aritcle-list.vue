@@ -1,21 +1,30 @@
 <template>
   <div class="article-list">
-    <van-list
-      v-model="loading"
-      :finished="finished"
-      finished-text="没有更多了"
-      @load="onLoad"
+    <van-pull-refresh
+      v-model="isRefreshLoading"
+      :success-text="refreshSuccessText"
+      :success-duration="1500"
+      @refresh="onRefresh"
     >
-      <van-cell
-        v-for="(article, index) in articles"
-        :key="index"
-        :title="article.title" />
-    </van-list>
+      <van-list
+        v-model="isRefreshLoading"
+        :finished="finished"
+        finished-text="没有更多了"
+        @load="onLoad"
+      >
+        <van-cell
+          v-for="(article, index) in articles"
+          :key="index"
+          :title="article.title"
+        />
+      </van-list>
+    </van-pull-refresh>
   </div>
 </template>
 
 <script>
 import { getArticles } from '@/api/article'
+// import { Toast } from 'vant'
 
 export default {
   name: 'ArticleList',
@@ -31,7 +40,9 @@ export default {
       articles: [], // 数据列表
       loading: false, // 控制加载中的 loading 状态
       finished: false, // 控制加载结束的状态
-      timestamp: null
+      timestamp: null,
+      isRefreshLoading: false,
+      refreshSuccessText: ''
     }
   },
   computed: {},
@@ -61,6 +72,24 @@ export default {
         // 没有数据了, 把加载状态设置结束
         this.finished = true
       }
+    },
+
+    async onRefresh () {
+      // 下拉刷新, 组件自己就会展示 loading 状态
+      // 1. 请求数据
+      const { data } = await getArticles({
+        channel_id: this.channel.id,
+        timestamp: Date.now(),
+        with_top: 1
+      })
+
+      // 2. 把数据放到列表中 (顶部追加)
+      const { results } = data.data
+      this.articles.unshift(...results)
+
+      // 3. 关闭刷新的状态
+      this.isRefreshLoading = false
+      this.refreshSuccessText = `更新了${results.length}条数据`
     }
   }
 }
