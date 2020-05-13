@@ -7,7 +7,7 @@
       @refresh="onRefresh"
     >
       <van-list
-        v-model="isRefreshLoading"
+        v-model="loading"
         :finished="finished"
         finished-text="没有更多了"
         @load="onLoad"
@@ -24,7 +24,6 @@
 
 <script>
 import { getArticles } from '@/api/article'
-// import { Toast } from 'vant'
 
 export default {
   name: 'ArticleList',
