@@ -6,7 +6,7 @@
     </div>
     <div slot="label">
       <div
-        v-if="aritcle.cover.type === 3"
+        v-if="article.cover.type === 3"
         class="cover-wrap"
       >
         <div
