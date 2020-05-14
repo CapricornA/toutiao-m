@@ -17,9 +17,9 @@
     <van-grid :gutter="10">
       <van-grid-item
         class="grid-item"
-        v-for="value in 8"
-        :key="value"
-        text="文字"
+        v-for="(channel, index) in userChannels"
+        :key="index"
+        :text="channel.name"
       />
     </van-grid>
     <!-- /我的频道 -->
@@ -46,18 +46,34 @@
 </template>
 
 <script>
+import { getAllChannels } from '@/api/channel'
+
 export default {
   name: 'ChannelEdit',
-  props: {},
+  props: {
+    userChannels: {
+      type: Array,
+      required: true
+    }
+  },
   components: {},
   data () {
-    return {}
+    return {
+      allChannels: []
+    }
   },
   computed: {},
   watch: {},
-  created () {},
+  created () {
+    this.loadAllChannels()
+  },
   mounted () {},
-  methods: {}
+  methods: {
+    async loadAllChannels () {
+      const { data } = await getAllChannels()
+      this.allChannels = data.data.channels
+    }
+  }
 }
 </script>
 
