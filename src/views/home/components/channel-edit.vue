@@ -38,6 +38,7 @@
         v-for="(channel, index) in recommendChannels"
         :key="index"
         :text="channel.name"
+        @click="onAdd(channel)"
       />
     </van-grid>
     <!-- /频道推荐 -->
@@ -86,6 +87,10 @@ export default {
     async loadAllChannels () {
       const { data } = await getAllChannels()
       this.allChannels = data.data.channels
+    },
+
+    onAdd (channel) {
+      this.userChannels.push(channel)
     }
   }
 }
