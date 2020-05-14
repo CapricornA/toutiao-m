@@ -24,6 +24,13 @@
         <article-list :channel="channel" />
         <!-- /文章列表 -->
       </van-tab>
+      <div
+        slot="nav-right"
+        class="wap-nav-wrap"
+        @click="isChannelEditShow = true"
+      >
+        <van-icon name="wap-nav" />
+      </div>
     </van-tabs>
     <!-- /文章频道列表 -->
 
@@ -88,6 +95,31 @@ export default {
     }
     .van-button__text {
       font-size: 14px;
+    }
+  }
+
+  .wap-nav-wrap {
+    position: fixed;
+    right: 0;
+    width: 33px;
+    height: 43px;
+    background-color: #fff;
+    opacity: .9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .van-icon {
+      font-size: 20x;
+    }
+    &::before {
+      content: '';
+      width: 1px;
+      height: 43px;
+      background: url("./line.png") no-repeat;
+      background-size: contain;
+      position: absolute;
+      left: 0;
+      top: 0;
     }
   }
 }
