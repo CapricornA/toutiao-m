@@ -35,9 +35,9 @@
     <van-grid :gutter="10">
       <van-grid-item
         class="grid-item"
-        v-for="value in 8"
-        :key="value"
-        text="文字"
+        v-for="(channel, index) in recommendChannels"
+        :key="index"
+        :text="channel.name"
       />
     </van-grid>
     <!-- /频道推荐 -->
@@ -62,7 +62,21 @@ export default {
       allChannels: []
     }
   },
-  computed: {},
+  computed: {
+    // 推荐的频道列表
+    recommendChannels () {
+      // 所有频道 - 我的频道 = 推荐频道
+      // filter 方法 过滤数组, 根据方法返回的布尔值 true 来收集数据
+      // filter 查找满足元素的所有元素
+      return this.allChannels.filter(channel => {
+        // 判断 channel 是否属于用户频道
+        // find 方法查找满足元素的单个元素
+        return !this.userChannels.find(userChannel => {
+          return userChannel.id === channel.id
+        })
+      })
+    }
+  },
   watch: {},
   created () {
     this.loadAllChannels()
