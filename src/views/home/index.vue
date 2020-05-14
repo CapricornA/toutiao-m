@@ -98,6 +98,10 @@ export default {
     }
   }
 
+  /deep/ .van-tabs__nav {
+    margin-right: 33px;
+  }
+
   .wap-nav-wrap {
     position: fixed;
     right: 0;
