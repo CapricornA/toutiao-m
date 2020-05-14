@@ -26,6 +26,10 @@
       </van-tab>
       <div
         slot="nav-right"
+        class="wap-nav-palceholder"
+      ></div>
+      <div
+        slot="nav-right"
         class="wap-nav-wrap"
         @click="isChannelEditShow = true"
       >
@@ -42,7 +46,9 @@
       close-icon-position="top-left"
       get-container="body"
       style="height: 100%"
-    />
+    >
+      <channel-edit />
+    </van-popup>
 
   </div>
 </template>
@@ -50,12 +56,15 @@
 <script>
 import { getUserChannels } from '@/api/user'
 import ArticleList from './components/aritcle-list'
+import ChannelEdit from './components/channel-edit'
 
 export default {
   name: 'HomeIndex',
   props: {},
   components: {
-    ArticleList
+    ArticleList,
+    ChannelEdit
+
   },
   data () {
     return {
@@ -100,6 +109,11 @@ export default {
 
   /deep/ .van-tabs__nav {
     margin-right: 33px;
+  }
+
+  .wap-nav-palceholder {
+    width: 33px;
+    flex-shrink: 0;
   }
 
   .wap-nav-wrap {
